@@ -4,7 +4,8 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from myapp.config import DevConfig
-from flask_migrate import Migrate
+
+
 
 app = Flask(__name__) #template_folder="/pages"
 #app.debug = True
@@ -12,12 +13,11 @@ app.config.from_object(DevConfig)
 
 #Para la configuracion de la BD
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 from myapp.task.controllers import taskRoute
 app.register_blueprint(taskRoute)
-
-#with app.app_context():
-#    db.create_all()
+#Para la creacion de las tablas en la base de datos
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def hello_world() -> str:

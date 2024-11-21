@@ -16,9 +16,6 @@ migrate = Migrate(app, db)
 from myapp.task.controllers import taskRoute
 app.register_blueprint(taskRoute)
 
-#with app.app_context():
-#    db.create_all()
-
 @app.route('/')
 def hello_world() -> str:
     name = request.args.get('name', 'Valor por defecto')
