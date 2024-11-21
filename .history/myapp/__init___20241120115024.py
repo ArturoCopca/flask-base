@@ -1,0 +1,16 @@
+''' Este archivo se utiliza para realizar la importacion de las configuraciones globales
+    tales como la importacion de la app, las rutas generales del proyecto, definir si el
+    servidor corre en modo debug, Registro de la BD, etc.'''
+from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+from myapp.config import DevConfig
+
+
+app = Flask(__name__) #template_folder="/pages"
+#app.debug = True
+app.config.from_object(DevConfig)
+
+@app.route('/')
+def hello_world() -> str:
+    name = request.args.get('name', 'Valor por defecto')
+    return render_template('index.html', task="Arturo", name=name)
