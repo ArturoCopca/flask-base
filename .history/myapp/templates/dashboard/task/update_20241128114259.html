@@ -1,0 +1,7 @@
+<!--Todas las paginas de usuario que van a pertenercer al dashbord van a heredar de la plantilla maestra del dashboard-->
+{% extends "dashboard/master.html"%}
+{% block title%} Update task {%endblock%}
+{% block content%} 
+    <form action="" method="post" enctype="multipart/form-data">
+        {% include 'dashboard/task/_form.html' %}
+    </form>
